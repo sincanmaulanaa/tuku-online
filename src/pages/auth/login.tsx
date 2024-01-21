@@ -1,5 +1,11 @@
+import LoginView from "@/components/views/auth/login";
+
 const Login = () => {
-  return <div>Login Page</div>;
+  return (
+    <>
+      <LoginView />
+    </>
+  );
 };
 
 export default Login;
