@@ -62,13 +62,25 @@ const LoginView = () => {
               className={styles.login__form__item__input}
             />
           </div>
+
+          <button type="submit" className={styles.login__form__button}>
+            {isLoading ? "Loading..." : "Login"}
+          </button>
+          <hr className={styles.login__form__divider} />
+          <div className={styles.login__form__other}>
+            <button
+              type="button"
+              onClick={() => signIn("google", { callbackUrl, redirect: false })}
+              className={styles.login__form__other__button}
+            >
+              <i className="bx bxl-google" />
+              Login with Google
+            </button>
+          </div>
           <p className={styles.login__form__link}>
             Don{"'"}t have an account?{" "}
             <Link href={"/auth/register"}>Sign up here</Link>
           </p>
-          <button type="submit" className={styles.login__form__button}>
-            {isLoading ? "Loading..." : "Login"}
-          </button>
         </form>
         {error && <p className={styles.login__error}>{error}</p>}
       </div>

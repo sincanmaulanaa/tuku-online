@@ -78,12 +78,12 @@ const RegisterView = () => {
               className={styles.register__form__item__input}
             />
           </div>
-          <p className={styles.register__form__link}>
-            Have an account? <Link href={"/auth/login"}>Sign in here</Link>
-          </p>
           <button type="submit" className={styles.register__form__button}>
             {isLoading ? "Loading..." : "Register"}
           </button>
+          <p className={styles.register__form__link}>
+            Have an account? <Link href={"/auth/login"}>Sign in here</Link>
+          </p>
         </form>
         {error && <p className={styles.register__error}>{error}</p>}
       </div>
