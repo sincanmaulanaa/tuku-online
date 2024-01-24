@@ -3,6 +3,8 @@ import styles from "./Login.module.scss";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
 
 const LoginView = () => {
   const { push, query } = useRouter();
@@ -44,38 +46,21 @@ const LoginView = () => {
       <h1 className={styles.login__title}>Login</h1>
       <div className={styles.login__form}>
         <form onSubmit={handleSubmit}>
-          <div className={styles.login__form__item}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className={styles.login__form__item__input}
-            />
-          </div>
-          <div className={styles.login__form__item}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="text"
-              id="password"
-              name="password"
-              className={styles.login__form__item__input}
-            />
-          </div>
-
-          <button type="submit" className={styles.login__form__button}>
+          <Input name="email" type="email" label="Email" />
+          <Input name="password" type="password" label="Password" />
+          <Button type="submit" className={styles.login__form__button}>
             {isLoading ? "Loading..." : "Login"}
-          </button>
+          </Button>
           <hr className={styles.login__form__divider} />
           <div className={styles.login__form__other}>
-            <button
+            <Button
               type="button"
               onClick={() => signIn("google", { callbackUrl, redirect: false })}
               className={styles.login__form__other__button}
             >
               <i className="bx bxl-google" />
               Login with Google
-            </button>
+            </Button>
           </div>
           <p className={styles.login__form__link}>
             Don{"'"}t have an account?{" "}
