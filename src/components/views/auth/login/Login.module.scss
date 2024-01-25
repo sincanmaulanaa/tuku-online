@@ -1,121 +1,37 @@
 .login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  margin: auto;
-  padding-top: 30px;
-  &__error {
-    color: #fd3131;
-    margin: 14px 0;
+  &__divider {
+    margin: 20px 0;
   }
-  &__title {
-    font-size: 32px;
-  }
-  &__form {
+  &__button {
     width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 35 px 2px rgba(181, 181, 181, 0.5);
-    &__divider {
-      margin: 20px 0;
-    }
-    &__other {
+  }
+  &__other {
+    width: 100%;
+    &__button {
       width: 100%;
-      &__button {
-        background-color: #000;
-        color: #fff;
-        width: 100%;
-        padding: 10px;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0 6px;
-      }
       i {
         font-size: 20px;
+        margin-right: 7px;
       }
-    }
-    &__item {
-      display: flex;
-      flex-direction: column;
-      margin: 20px 0;
-      &__input {
-        padding: 10px;
-        background-color: #eee;
-        margin-top: 5px;
-        border: none;
-        outline: none;
-      }
-    }
-    &__link {
-      text-align: center;
-      margin-top: 20px;
-      a {
-        color: #0fa4a4;
-        font-weight: 600;
-      }
-    }
-    &__button {
-      background-color: #000;
-      color: #fff;
-      width: 100%;
-      margin-top: 16px;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
     }
   }
 }
 
 @media (min-width: 600px) {
   .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    max-width: 1700px;
-    margin: auto;
-    &__error {
-      color: #fd3131;
-      margin: 14px 0;
+    &__divider {
+      margin: 20px 0;
     }
-    &__title {
-      font-size: 32px;
+    &__button {
+      width: 100%;
     }
-    &__form {
-      width: 30%;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 35 px 2px rgba(181, 181, 181, 0.5);
-      &__divider {
-        margin: 20px 0;
-      }
-      &__other {
-        width: 100%;
-        &__button {
-          width: 100%;
-        }
-        i {
-          font-size: 20px;
-        }
-      }
-      &__link {
-        text-align: center;
-        margin-top: 20px;
-        a {
-          color: #0fa4a4;
-          font-weight: 600;
-        }
-      }
+    &__other {
+      width: 100%;
       &__button {
         width: 100%;
+      }
+      i {
+        font-size: 20px;
       }
     }
   }
