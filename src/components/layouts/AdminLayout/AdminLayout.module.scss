@@ -1,0 +1,17 @@
+.admin {
+  display: block;
+  &__main {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 600px) {
+  .admin {
+    display: flex;
+    &__main {
+      width: 100%;
+      padding: 40px 60px;
+    }
+  }
+}

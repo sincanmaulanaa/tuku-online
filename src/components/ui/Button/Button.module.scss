@@ -13,6 +13,10 @@
 .primary {
   background-color: #000;
   color: #fff;
+  &:hover {
+    transition: 200ms;
+    opacity: 0.7;
+  }
 }
 
 .secondary {

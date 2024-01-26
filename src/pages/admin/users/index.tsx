@@ -1,9 +1,20 @@
+import UsersView from "@/components/views/admin/users";
+import userServices from "@/services/user";
+import { useEffect, useState } from "react";
+
 const Users = () => {
-  return (
-    <div>
-      <h1>Users Page</h1>
-    </div>
-  );
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const getAllUsers = async () => {
+      const { data } = await userServices.getAllUsers();
+      setUsers(data.data);
+    };
+
+    getAllUsers();
+  }, []);
+
+  console.log(users);
+  return <UsersView users={users} />;
 };
 
 export default Users;
