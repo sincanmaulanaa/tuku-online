@@ -44,10 +44,10 @@ const RegisterView = () => {
       linkText="Already have an account? Sign in "
     >
       <form onSubmit={handleSubmit}>
-        <Input type="text" name="fullname" label="Fullname" />
-        <Input type="email" name="email" label="Email" />
-        <Input type="number" name="phone" label="Phone" />
-        <Input type="password" name="password" label="Password" />
+        <Input type="text" name="fullname" label="Fullname" required />
+        <Input type="email" name="email" label="Email" required />
+        <Input type="number" name="phone" label="Phone" required />
+        <Input type="password" name="password" label="Password" required />
         <Button type="submit" className={styles.register__button}>
           {isLoading ? "Loading..." : "Register"}
         </Button>

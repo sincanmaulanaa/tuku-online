@@ -1,0 +1,24 @@
+.modal {
+  width: 100%;
+  h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  form {
+    input {
+      font-weight: 600;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .modal {
+    width: 30vw;
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      text-align: left;
+    }
+  }
+}

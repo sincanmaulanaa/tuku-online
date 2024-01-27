@@ -13,7 +13,6 @@ const Users = () => {
     getAllUsers();
   }, []);
 
-  console.log(users);
   return <UsersView users={users} />;
 };
 
