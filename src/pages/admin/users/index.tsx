@@ -1,19 +1,25 @@
 import UsersView from "@/components/views/admin/users";
 import userServices from "@/services/user";
-import { useEffect, useState } from "react";
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    const getAllUsers = async () => {
-      const { data } = await userServices.getAllUsers();
-      setUsers(data.data);
-    };
-
-    getAllUsers();
-  }, []);
-
+const Users = ({ users }: any) => {
   return <UsersView users={users} />;
 };
 
 export default Users;
+
+export async function getServerSideProps() {
+  try {
+    const { data } = await userServices.getAllUsers();
+    return {
+      props: {
+        users: data.data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        users: [],
+      },
+    };
+  }
+}
