@@ -5,6 +5,8 @@ import type { AppProps } from "next/app";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { PagesProgressBar as ProgressBar } from "next-nprogress-bar";
+
 const plus_jakarta_sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -17,7 +19,6 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   const { pathname } = useRouter();
-  console.log(pathname.split("/")[1]);
 
   return (
     <SessionProvider session={session}>
@@ -30,6 +31,12 @@ export default function App({
       <div className={plus_jakarta_sans.className}>
         {!disableNavbar.includes(pathname.split("/")[1]) && <Navbar />}
         <Component {...pageProps} />
+        <ProgressBar
+          height="4px"
+          color="#fffd00"
+          options={{ showSpinner: false }}
+          shallowRouting
+        />
       </div>
     </SessionProvider>
   );
