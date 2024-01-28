@@ -5,8 +5,10 @@ import styles from "./ModalUpdateUser.module.scss";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
 import userServices from "@/services/user";
+import { useSession } from "next-auth/react";
 
 const ModalUpdateUser = (props: any) => {
+  const session: any = useSession();
   const { updatedUser, setUpdatedUser, setUsersData } = props;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +22,11 @@ const ModalUpdateUser = (props: any) => {
     };
 
     try {
-      const result = await userServices.updateUser(updatedUser.id, data);
+      const result = await userServices.updateUser(
+        updatedUser.id,
+        data,
+        session.data?.accessToken
+      );
       console.log(result);
 
       if (result.status === 200) {
