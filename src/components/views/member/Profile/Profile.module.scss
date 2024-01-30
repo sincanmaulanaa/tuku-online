@@ -1,0 +1,140 @@
+.profile {
+  &__main {
+    margin-top: 40px;
+    display: block;
+    gap: 40px;
+    padding-bottom: 30px;
+    &__avatar {
+      width: 100%;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      &__image {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        background-color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 100px;
+        font-weight: 700;
+      }
+      &__label {
+        margin-top: 20px;
+        background-color: #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 20px;
+        float: left;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 8px;
+      }
+      &__input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+      }
+      &__button {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+    &__detail {
+      margin-top: 30px;
+      border-radius: 10px;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
+      padding: 30px 20px;
+
+      form {
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .profile {
+    &__main {
+      margin-top: 40px;
+      display: flex;
+      gap: 40px;
+      padding-bottom: 0;
+      &__avatar {
+        width: 30%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 40px;
+        &__image {
+          border-radius: 50%;
+          width: 200px;
+          height: 200px;
+          background-color: #eee;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 100px;
+          font-weight: 700;
+        }
+        &__label {
+          margin-top: 20px;
+          background-color: #eee;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 20px;
+          float: left;
+          margin-bottom: 20px;
+          width: 100%;
+          padding: 20px;
+          font-weight: 500;
+          cursor: pointer;
+          border-radius: 8px;
+        }
+        &__input {
+          opacity: 0;
+          position: absolute;
+          z-index: -1;
+        }
+        &__button {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+      &__detail {
+        margin-top: 0;
+        border-radius: 10px;
+        width: 70%;
+        height: auto;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
+        padding: 30px 50px;
+        form {
+          button {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

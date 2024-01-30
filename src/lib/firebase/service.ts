@@ -11,7 +11,15 @@ import {
   where,
 } from "firebase/firestore";
 import app from "./init";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
+
 const firestore = getFirestore(app);
+const storage = getStorage(app);
 
 export async function retreiveData(collectionName: string) {
   const snapshot = await getDocs(collection(firestore, collectionName));
@@ -20,11 +28,16 @@ export async function retreiveData(collectionName: string) {
   return data;
 }
 
-export async function retreiveDataById(collectionName: string, id: string) {
-  const snapshot = await getDoc(doc(firestore, collectionName, id));
-  const data = snapshot.data;
+export async function retrieveDataById(collectionName: string, id: string) {
+  try {
+    const docRef = doc(firestore, collectionName, id);
+    const snapshot = await getDoc(docRef);
+    const data = snapshot.data();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function addData(
@@ -33,8 +46,8 @@ export async function addData(
   callback: Function
 ) {
   await addDoc(collection(firestore, collectionName), data)
-    .then(() => {
-      callback(true);
+    .then((res) => {
+      callback(true, res);
     })
     .catch((error) => {
       callback(false);
@@ -87,4 +100,38 @@ export async function deleteData(
     .catch(() => {
       callback(false);
     });
+}
+
+export async function uploadFile(
+  userid: string,
+  file: any,
+  callback: Function
+) {
+  if (file) {
+    if (file.size < 1048576) {
+      const newFileName = "profile." + file.name.split(".")[1];
+      const storageRef = ref(storage, `images/users/${userid}/${newFileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(progress);
+        },
+        (error: any) => {
+          console.error(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            callback(true, downloadURL);
+          });
+        }
+      );
+    } else {
+      return callback(false);
+    }
+  }
+  return true;
 }

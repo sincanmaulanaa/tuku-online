@@ -21,7 +21,6 @@ export default function withAuth(
         req,
         secret: process.env.NEXT_AUTH_SECRET,
       });
-      console.log(token);
 
       // if user not yet login, and user not on auth page, it will redirect to login page
       if (!token && !authPage.includes(pathname)) {

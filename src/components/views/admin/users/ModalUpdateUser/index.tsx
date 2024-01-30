@@ -27,7 +27,6 @@ const ModalUpdateUser = (props: any) => {
         data,
         session.data?.accessToken
       );
-      console.log(result);
 
       if (result.status === 200) {
         setIsLoading(false);

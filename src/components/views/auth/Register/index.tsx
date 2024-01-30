@@ -25,8 +25,7 @@ const RegisterView = () => {
     };
 
     try {
-      const result = await authServices.registerAccount(data);
-      console.log("RESULT === ", result);
+      await authServices.registerAccount(data);
       form.reset();
       push("/auth/login");
       setIsLoading(false);
