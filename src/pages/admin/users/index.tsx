@@ -1,8 +1,8 @@
-import UsersView from "@/components/views/admin/Users";
+import UserManagementView from "@/components/views/admin/Users";
 import userServices from "@/services/user";
 
 const Users = ({ users }: any) => {
-  return <UsersView users={users} />;
+  return <UserManagementView users={users} />;
 };
 
 export default Users;

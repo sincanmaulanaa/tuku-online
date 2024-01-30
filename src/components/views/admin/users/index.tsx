@@ -9,7 +9,7 @@ type Proptypes = {
   users: any;
 };
 
-const UsersView = (props: Proptypes) => {
+const UserManagementView = (props: Proptypes) => {
   const { users } = props;
   const [updatedUser, setUpdatedUser] = useState<any>({});
   const [deletedUser, setDeletedUser] = useState<any>({});
@@ -82,4 +82,4 @@ const UsersView = (props: Proptypes) => {
   );
 };
 
-export default UsersView;
+export default UserManagementView;
