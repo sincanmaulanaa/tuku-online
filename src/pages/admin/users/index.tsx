@@ -1,4 +1,4 @@
-import UsersView from "@/components/views/admin/users";
+import UsersView from "@/components/views/admin/Users";
 import userServices from "@/services/user";
 
 const Users = ({ users }: any) => {

@@ -6,15 +6,15 @@ import Image from "next/image";
 import { uploadFile } from "@/lib/firebase/service";
 import { useState } from "react";
 import userServices from "@/services/user";
-import { useSession } from "next-auth/react";
+
 const ProfileView = (props: any) => {
   const { profile, setProfile, session } = props;
   const [changeImage, setChangeImage] = useState<any>({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState("");
 
   const handleChangeProfilePicture = (e: any) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading("picture");
 
     const file = e.target[0]?.files[0];
     if (file) {
@@ -41,16 +41,71 @@ const ProfileView = (props: any) => {
               setChangeImage({});
               e.target[0].value = "";
 
-              setIsLoading(false);
+              setIsLoading("");
             } else {
-              setIsLoading(false);
+              setIsLoading("");
             }
           } else {
-            setIsLoading(false);
+            setIsLoading("");
             setChangeImage({});
           }
         }
       );
+    }
+  };
+
+  const handleChangeProfile = async (e: any) => {
+    e.preventDefault();
+    setIsLoading("profile");
+
+    const form = e.target as HTMLFormElement;
+    const data: any = {
+      fullname: form.fullname.value,
+      phone: form.phone.value,
+    };
+
+    const result = await userServices.updateProfile(
+      profile.id,
+      data,
+      session.data?.accessToken
+    );
+
+    if (result.status === 200) {
+      setProfile({
+        ...profile,
+        fullname: data.fullname,
+        phone: data.phone,
+      });
+
+      form.reset();
+      setIsLoading("");
+    } else {
+      setIsLoading("");
+    }
+  };
+
+  const handleChangePassword = async (e: any) => {
+    e.preventDefault();
+    setIsLoading("password");
+
+    const form = e.target as HTMLFormElement;
+    const data: any = {
+      password: form["new-password"].value,
+      oldPassword: form["old-password"].value,
+      lastPassword: profile.password,
+    };
+
+    const result = await userServices.updateProfile(
+      profile.id,
+      data,
+      session.data?.accessToken
+    );
+
+    if (result.status === 200) {
+      form.reset();
+      setIsLoading("");
+    } else {
+      setIsLoading("");
     }
   };
 
@@ -59,6 +114,7 @@ const ProfileView = (props: any) => {
       <h1>Profile Page</h1>
       <div className={styles.profile__main}>
         <div className={styles.profile__main__avatar}>
+          <h2 className={styles.profile__main__avatar__title}>Avatar</h2>
           {profile.image ? (
             <Image
               className={styles.profile__main__avatar__image}
@@ -82,8 +138,8 @@ const ProfileView = (props: any) => {
               ) : (
                 <>
                   <p>
-                    Upload a new avatar, Larger image will be resized
-                    automatically.
+                    Click here to upload a new avatar, Larger image will be
+                    resized automatically.
                   </p>
                   <p>
                     {" "}
@@ -106,12 +162,13 @@ const ProfileView = (props: any) => {
               className={styles.profile__main__avatar__button}
               type="submit"
             >
-              {isLoading ? "Uploading..." : "Change Picture"}
+              {isLoading === "picture" ? "Uploading..." : "Change Picture"}
             </Button>
           </form>
         </div>
-        <div className={styles.profile__main__detail}>
-          <form>
+        <div className={styles.profile__main__profile}>
+          <form onSubmit={handleChangeProfile}>
+            <h2 className={styles.profile__main__profile__title}>Profile</h2>
             <Input
               label="Fullname"
               name="fullname"
@@ -123,6 +180,7 @@ const ProfileView = (props: any) => {
               name="email"
               defaultValue={profile?.email}
               type="email"
+              disabled
             />
             <Input
               label="Phone Number"
@@ -130,8 +188,25 @@ const ProfileView = (props: any) => {
               defaultValue={profile?.phone}
               type="number"
             />
+            <Input
+              label="Role"
+              name="role"
+              defaultValue={profile?.role}
+              type="text"
+              disabled
+            />
             <Button type="submit" variant="primary">
-              Update Profile
+              {isLoading === "profile" ? "Loading..." : "Update Profile"}
+            </Button>
+          </form>
+        </div>
+        <div className={styles.profile__main__password}>
+          <h2>Change Password</h2>
+          <form onSubmit={handleChangePassword}>
+            <Input label="Old Password" name="old-password" type="password" />
+            <Input label="New Password" name="new-password" type="password" />
+            <Button type="submit">
+              {isLoading === "password" ? "Loading..." : "Update Password"}
             </Button>
           </form>
         </div>

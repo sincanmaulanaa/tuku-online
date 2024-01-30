@@ -1,9 +1,10 @@
 .profile {
   &__main {
     margin-top: 40px;
-    display: block;
+    display: flex;
+    flex-direction: column;
     gap: 40px;
-    padding-bottom: 30px;
+    padding-bottom: 0;
     &__avatar {
       width: 100%;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
@@ -12,7 +13,11 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 20px;
+      padding: 30px 50px;
+      &__title {
+        margin-bottom: 20px;
+      }
+
       &__image {
         border-radius: 50%;
         width: 200px;
@@ -51,14 +56,30 @@
         width: 100%;
       }
     }
-    &__detail {
-      margin-top: 30px;
+    &__profile {
+      margin-top: 0;
       border-radius: 10px;
       width: 100%;
       height: auto;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
-      padding: 30px 20px;
-
+      padding: 30px 50px;
+      form {
+        button {
+          width: 100%;
+        }
+        h2 {
+          margin-bottom: 20px;
+        }
+      }
+    }
+    &__password {
+      width: 100%;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
+      border-radius: 10px;
+      padding: 30px 50px;
+      h2 {
+        margin-bottom: 20px;
+      }
       form {
         button {
           width: 100%;
@@ -73,17 +94,22 @@
     &__main {
       margin-top: 40px;
       display: flex;
-      gap: 40px;
+      gap: 20px;
+      flex-direction: row;
       padding-bottom: 0;
       &__avatar {
-        width: 30%;
+        width: 25%;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
         border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 40px;
+        padding: 30px 50px;
+        &__title {
+          margin-bottom: 20px;
+        }
+
         &__image {
           border-radius: 50%;
           width: 200px;
@@ -122,13 +148,30 @@
           width: 100%;
         }
       }
-      &__detail {
+      &__profile {
         margin-top: 0;
         border-radius: 10px;
-        width: 70%;
+        width: 50%;
         height: auto;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
         padding: 30px 50px;
+        form {
+          button {
+            width: auto;
+          }
+          h2 {
+            margin-bottom: 20px;
+          }
+        }
+      }
+      &__password {
+        width: 25%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.088);
+        border-radius: 10px;
+        padding: 30px 50px;
+        h2 {
+          margin-bottom: 20px;
+        }
         form {
           button {
             width: auto;
